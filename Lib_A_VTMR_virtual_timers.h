@@ -22,6 +22,11 @@
 //******************************************************************************
 // Секция определения типов
 
+typedef enum {
+    VTMR_STOP,
+    VTMR_RUNNING,
+} VTMR_tmr_status_e;
+
 typedef struct {
     /**
      * @brief   Переменная для записи текущего значения аппаратного счетчика;
@@ -31,12 +36,12 @@ typedef struct {
     /**
      * @brief   Указатель на старшие 16 бит аппаратного счетчика;
      */
-    uint32_t *pHighCntReg;
+    const uint16_t *pHighCntReg;
 
     /**
      * @brief   Указатель на младшие 16 бит аппаратного счетчика;
      */
-    uint32_t *pLowCntReg;
+    const uint16_t *pLowCntReg;
 
     /**
      * @brief   В данную переменную записывается временной интервал между
@@ -45,10 +50,11 @@ typedef struct {
      */
     uint32_t timeInterval;
 
-    enum {
-        VTMR_STOP,
-        VTMR_RUNNING,
-    } state;
+    /**
+     * @brief   Текущее состояние виртуального таймера;
+     * @note    Запущен или остановлен;
+     */
+    VTMR_tmr_status_e state;
 } VTMR_tmr_s;
 //******************************************************************************
 
@@ -81,16 +87,19 @@ extern void VTMR_IntProcess(
 /* ################################################################## */
 /* <Функции виртуальных таймеров, привязанных к аппаратному счетчику> */
 /* ################################################################## */
-void VTMR_StartTimer(
+extern void VTMR_StartTimer(
         VTMR_tmr_s *pVTMR);
 
-uint32_t VTMR_GetTimerValue(
+extern uint32_t VTMR_GetTimerValue(
         VTMR_tmr_s *pVTMR);
 
-void VTMR_InitTimerStruct(
+extern uint32_t VTMR_GetMaxTimerValue(
+        VTMR_tmr_s *pVTMR);
+
+extern void VTMR_InitTimerStruct(
         VTMR_tmr_s *pVTMR,
-        uint32_t *pHighCntReg,
-        uint32_t *pLowCntReg);
+        const uint16_t * const pHighCntReg,
+        const uint16_t * const pLowCntReg);
 //******************************************************************************
 
 

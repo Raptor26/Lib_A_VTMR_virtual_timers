@@ -183,7 +183,7 @@ void VTMR_StartVirtTimer(
 uint32_t VTMR_GetValueVirtTimer(
                                 VTMR_tmr_s *vTMR)
 {
-    return vTMR->timeInterval;
+	return (vTMR->timeInterval);
 }
 
 void VTMR_IntProcess(
@@ -225,7 +225,7 @@ uint32_t VTMR_GetTimerValue(
             | *pVTMR->pLowCntReg)
             - pVTMR->cnt;
 
-    return pVTMR->timeInterval;
+    return (pVTMR->timeInterval);
 }
 
 /**
@@ -248,7 +248,7 @@ uint32_t VTMR_GetMaxTimerValue(
     {
         pVTMR->timeInterval = timeInterval;
     }
-    return pVTMR->timeInterval;
+	return (pVTMR->timeInterval);
 }
 
 /**

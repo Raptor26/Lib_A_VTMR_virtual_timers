@@ -255,7 +255,7 @@ VTMR_GetTimerValue(
 
 		uint32_t cnt32Bit =
 			(((highCnt << 16) & 0xFFFF0000)
-			 | (lowCnt & 0x0000FFFF)) - pVTMR->cnt;
+			 | (lowCnt & 0x0000FFFF));
 
 		/* Если было обнуление аппаратного счетчика */
 		if (pVTMR->cnt >= cnt32Bit)

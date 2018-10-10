@@ -39,12 +39,12 @@ typedef struct {
     /**
      * @brief   Указатель на старшие 16 бит аппаратного счетчика;
      */
-    const uint16_t volatile const *pHighCntReg;
+    const uint16_t volatile *pHighCntReg;
 
     /**
      * @brief   Указатель на младшие 16 бит аппаратного счетчика;
      */
-    const uint16_t volatile const *pLowCntReg;
+    const uint16_t volatile *pLowCntReg;
 
     /**
      * @brief   В данную переменную записывается временной интервал между
